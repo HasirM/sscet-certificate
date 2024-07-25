@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Certificate Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .certificate {
+            border: 2px solid #333;
+            padding: 20px;
+            margin: 20px;
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+</head>
+<body>
+
+<form id="uploadForm">
+    <input type="file" id="excelFile" accept=".xls, .xlsx" />
+    <button type="button" onclick="generateCertificates()">Generate Certificates</button>
+</form>
+
+<button id="downloadButton" style="display: none;" onclick="downloadCertificates()">Download Zip</button>
+
+<script>
+    // Initialize JSZip
+    const zip = new JSZip();
+
+    function generateCertificates() {
+        // Get the uploaded file
+        const fileInput = document.getElementById('excelFile');
+        const file = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+
+                // Assuming the first sheet is used
+                const sheetName = workbook.SheetNames[0];
+                const sheet = workbook.Sheets[sheetName];
+
+                // Process the sheet data and generate course certificates
+                processSheetData(sheet);
+
+                // Show the download button
+                document.getElementById('downloadButton').style.display = 'block';
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+    }
+
+    function processSheetData(sheet) {
+        // Extract data from the sheet and generate course certificates
+        const data = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: false });
+
+        // Skip the first row (header row) and loop through each student data
+        for (let i = 1; i < data.length; i++) {
+            const student = data[i];
+
+            // Check if the row contains non-empty values
+            if (student.some(value => value !== null && value !== undefined && value !== "")) {
+                // Create a certificate container
+                const certificateContainer = document.createElement('div');
+                certificateContainer.classList.add('certificate');
+
+                // Add certificate content
+                const certificateContent = `
+                    <h2>Certificate of Completion</h2>
+                    <p><strong>Name:</strong> ${student[1]}</p>
+                    <p><strong>Register Number:</strong> ${student[2]}</p>
+                    <p><strong>Father Name:</strong> ${student[3]}</p>
+                    <p><strong>From:</strong> ${student[4]}</p>
+                    <p><strong>To:</strong> ${student[5]}</p>
+                `;
+
+                certificateContainer.innerHTML = certificateContent;
+
+                // Append the certificate to the body or a specific container
+                document.body.appendChild(certificateContainer);
+
+                // Generate PDF and add it to the zip
+                generateAndAddToZip(certificateContainer, student[1]); // Use student's name as the file name
+            }
+        }
+    }
+
+    function generateAndAddToZip(element, fileName) {
+        // Generate PDF and add it to the zip
+        html2pdf(element)
+            .output()
+            .then(pdfBlob => {
+                zip.file(`${fileName}_Certificate.pdf`, pdfBlob);
+            });
+    }
+
+    function downloadCertificates() {
+        // Generate and download the zip file
+        zip.generateAsync({ type: 'blob' }).then(function (blob) {
+            const isIE = window.navigator.msSaveBlob !== undefined;
+
+            if (isIE) {
+                // For Internet Explorer
+                window.navigator.msSaveBlob(blob, 'Certificates.zip');
+            } else {
+                // For other browsers
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'Certificates.zip';
+                link.click();
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

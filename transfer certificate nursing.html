@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>Transfer Certificate</title>
+      <link rel="stylesheet" href="css/style.css">
+      <link href="css/bootstrap.css" rel="stylesheet">
+      <link rel="stylesheet" href="css/bootstrap.css.map">
+      <link rel="icon" type="image/x-icon" href="/assets/shanmugha-logo.png">
+   </head>
+   <body>
+      <div id="left">
+         <div class="form-left">
+            <div class="container px-5 my-4">
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="fullName" onkeyup="updatePreview('fullName')" type="text" placeholder="Full Name" data-sb-validations="required" />
+                       <label for="fullName">Full Name</label>
+                       <div class="invalid-feedback" data-sb-feedback="fullName:required">Full Name is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="registerNumber" onkeyup="updatePreview('registerNumber')" type="text" placeholder="Register Number" data-sb-validations="required" />
+                       <label for="registerNumber">Register Number</label>
+                       <div class="invalid-feedback" data-sb-feedback="registerNumber:required">Register Number is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="admissionTcNumber" onkeyup="updatePreview('admissionTcNumber')" type="text" placeholder="Admission/TC Number" data-sb-validations="required" />
+                       <label for="admissionTcNumber">Admission/TC Number</label>
+                       <div class="invalid-feedback" data-sb-feedback="admissionTcNumber:required">Admission/TC Number is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                     <select class="form-select" id="degree" onchange="updateBranchOptions()" aria-label="Degree">
+                        <option value="Select">Select</option>
+                        <option value="B.E">B.E</option>
+                        <option value="B.Tech">B.Tech</option>
+                        <option value="M.E">M.E</option>
+                     </select>
+                     <label for="degree">Degree</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                     <select class="form-select" id="branch" onchange="updatePreview('branch')" aria-label="Branch">
+                        <option value="1"></option>
+                     </select>
+                     <label for="branch">Branch</label>
+                  </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="parentGuradianName" onkeyup="updatePreview('parentGuradianName')" type="text" placeholder="Parent/Guradian Name" data-sb-validations="required" />
+                       <label for="parentGuradianName">Parent/Guradian Name</label>
+                       <div class="invalid-feedback" data-sb-feedback="parentGuradianName:required">Parent/Guradian Name is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                     <input class="form-control" id="image" type="file" accept="image/*" placeholder="Nationality" data-sb-validations="required" />
+                     <label for="nationality">Upload Image</label>
+                     <div class="invalid-feedback" data-sb-feedback="nationality:required">Image is required.</div>
+                 </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="nationality" onkeyup="updatePreview('nationality')" type="text" placeholder="Nationality" data-sb-validations="required" />
+                       <label for="nationality">Nationality</label>
+                       <div class="invalid-feedback" data-sb-feedback="nationality:required">Nationality is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="religion" onkeyup="updatePreview('religion')" type="text" placeholder="Religion" data-sb-validations="required" />
+                       <label for="religion">Religion</label>
+                       <div class="invalid-feedback" data-sb-feedback="religion:required">Religion is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="community" onkeyup="updatePreview('community')" type="text" placeholder="Community" data-sb-validations="required" />
+                       <label for="community">Community</label>
+                       <div class="invalid-feedback" data-sb-feedback="community:required">Community is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="caste" onkeyup="updatePreview('caste')" type="text" placeholder="Caste" data-sb-validations="required" />
+                       <label for="caste">Caste</label>
+                       <div class="invalid-feedback" data-sb-feedback="caste:required">Caste is required.</div>
+                   </div>
+                   <div class="mb-3">
+                       <label class="form-label d-block">Gender</label>
+                       <div class="form-check form-check-inline">
+                           <input class="form-check-input" id="male" type="radio" onclick="updatePreview('male')" name="gender" data-sb-validations="required" />
+                           <label class="form-check-label" for="male">Male</label>
+                       </div>
+                       <div class="form-check form-check-inline">
+                           <input class="form-check-input" id="female" type="radio" onclick="updatePreview('female')" name="gender" data-sb-validations="required" />
+                           <label class="form-check-label" for="female">Female</label>
+                       </div>
+                       <div class="invalid-feedback" data-sb-feedback="gender:required">One option is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="dateOfBirth" type="date" onchange="updatePreview('dateOfBirth')" placeholder="Date of Birth" data-sb-validations="required" />
+                       <label for="dateOfBirth">Date of Birth</label>
+                       <div class="invalid-feedback" data-sb-feedback="dateOfBirth:required">Date of Birth is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <select class="form-select" id="semester" onchange="updatePreview('semester')" aria-label="Semester">
+                           <option value="Select">Select</option>
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                           <option value="5">5</option>
+                           <option value="6">6</option>
+                           <option value="7">7</option>
+                           <option value="8">8</option>
+                       </select>
+                       <label for="semester">Semester</label>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="dateOfAdmission" type="date" onchange="updatePreview('dateOfAdmission')" placeholder="Date of Admission" data-sb-validations="required" />
+                       <label for="dateOfAdmission">Date of Admission</label>
+                       <div class="invalid-feedback" data-sb-feedback="dateOfAdmission:required">Date of Admission is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <select class="form-select" id="mediumOfStudy"  onchange="updatePreview('mediumOfStudy')" aria-label="Medium of Study">
+                           <option value="Select">Select</option>
+                           <option value="English">English</option>
+                           <option value="Tamil">Tamil</option>
+                       </select>
+                       <label for="mediumOfStudy">Medium of Study</label>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="qualifiedForHigherStudy" onkeyup="updatePreview('qualifiedForHigherStudy')" type="text" placeholder="Qualified for Higher Study" data-sb-validations="required" />
+                       <label for="qualifiedForHigherStudy">Qualified for Higher Study</label>
+                       <div class="invalid-feedback" data-sb-feedback="qualifiedForHigherStudy:required">Qualified for Higher Study is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="dateOnWhichStudentLeftTheCollege" onchange="updatePreview('dateOnWhichStudentLeftTheCollege')" type="date" placeholder="Date on which student left the college" data-sb-validations="required" />
+                       <label for="dateOnWhichStudentLeftTheCollege">Date on which student left the college</label>
+                       <div class="invalid-feedback" data-sb-feedback="dateOnWhichStudentLeftTheCollege:required">Date on which student left the college is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="dateOfApplicationForTc" type="date" onchange="updatePreview('dateOfApplicationForTc')" placeholder="Date of application for TC" data-sb-validations="required" />
+                       <label for="dateOfApplicationForTc">Date of application for TC</label>
+                       <div class="invalid-feedback" data-sb-feedback="dateOfApplicationForTc:required">Date of application for TC is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="reasonForLeaving" type="text" onkeyup="updatePreview('reasonForLeaving')" placeholder="Reason for leaving" data-sb-validations="required" />
+                       <label for="reasonForLeaving">Reason for leaving</label>
+                       <div class="invalid-feedback" data-sb-feedback="reasonForLeaving:required">Reason for leaving is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                       <input class="form-control" id="conductAndCharacter" type="text"  onkeyup="updatePreview('conductAndCharacter')" placeholder="Conduct and character" data-sb-validations="required" />
+                       <label for="conductAndCharacter">Conduct and character</label>
+                       <div class="invalid-feedback" data-sb-feedback="conductAndCharacter:required">Conduct and character is required.</div>
+                   </div>
+                   <div class="form-floating mb-3">
+                     <input class="form-control" id="place" type="text"  onkeyup="updatePreview('place')" placeholder="Conduct and character" data-sb-validations="required" />
+                     <label for="conductAndCharacter">Place</label>
+                     <div class="invalid-feedback" data-sb-feedback="conductAndCharacter:required">Conduct and character is required.</div>
+                 </div>
+                 <div class="form-floating mb-3">
+                  <input class="form-control" id="date" type="date"  onchange="updatePreview('date')" placeholder="Conduct and character" data-sb-validations="required" />
+                  <label for="conductAndCharacter">Date</label>
+                  <div class="invalid-feedback" data-sb-feedback="conductAndCharacter:required">Conduct and character is required.</div>
+              </div>
+           </div>
+            <div class="download-btn">
+               <button onclick="generatePDF()">Create Certificate</button>
+            </div>
+         </div>
+      </div>
+      <div id="right">
+         <div class="certificate-container tc-container" id="certificate-final">
+            <div class="certificate transfer-certificate">
+               <div class="water-mark-overlay tc-overlay"></div>
+               <div class="certificate-header">
+                  <div class="header">
+                     <img src="assets/shanmugha-full-logo.png" class="logo" alt="">
+                     <img id="res-image" src="assets/X1pK30u.png" class="profilepic" alt="">
+                  </div>
+                  <p class="certificate-title tc-title"><strong>TRANSFER CERTIFICATE</strong></p>
+               </div>
+               <div class="mini-header">
+                  <p class="topic-head"> 
+                     Admission No \ TC No: <span class="strong" id="res-admissionTcNumber">--tcno--</span>
+                  </p>
+                  <p class="topic-head"> 
+                     Register No: <span class="strong" id="res-registerNumber">--reg--</span>
+                  </p>
+               </div>
+               <div class="certificate-body">
+                  <ol></ol>
+                  <div class="certificate-content tc-content">
+                     <div class="element">
+                        <p class="topic-title"> 
+                           1. Name of the Student:
+                        </p>
+                        <p class="topic-title second-element">
+                           <span class="strong" id="res-fullName">--fullname--</span>
+                        </p>
+                     </div>
+                     <div class="element">
+                        <p class="topic-title"> 
+                           2. Degree & Branch:
+                        </p>
+                        <p class="topic-title second-element strong"> 
+                           <span class="strong" id="res-degree">--degree--</span> & <span class="strong" id="res-branch">--branch--</span>
+                        </p>
+                     </div>
+                     <div class="element">
+                        <p class="topic-title"> 
+                           3. Name of the Parent/Guardian:
+                        </p>
+                        <p class="topic-title second-element"> 
+                           <span class="strong" id="res-parentGuradianName">--parentname--</span>
+                        </p>
+                     </div>
+                     <div class="element">
+                        <p class="topic-title"> 
+                           4. Nationality & Religion:
+                        </p>
+                        <p class="topic-title second-element strong"> 
+                          <span class="strong" id="res-nationality">--nationality--</span> & <span class="strong" id="res-religion">--religion--</span>
+                        </p>
+                     </div>
+                     <div class="element">
+                        <p class="topic-title"> 
+                           5. Community & Caste:
+                        </p>
+                        <p class="topic-title second-element strong"> 
+                          <span class="strong" id="res-community">--community--</span> & </span><span class="strong" id="res-caste">--caste--</span>
+                        </p>
+                     </div>
+                     <div class="element">
+                        <p class="topic-title"> 
+                           6. Gender:
+                        </p>
+                        <p class="topic-title second-element"> 
+                           <span class="strong" id="res-gender">--gender--</span>
+                        </p>
+                     </div>
+                     <div class="element">
+                        <p class="topic-title"> 
+                           7. Date of birth as entered in the admission register:
+                        </p>
+                        <p class="topic-title second-element"> 
+                           <span class="strong" id="res-dateOfBirth">--dateOfBirth--</span>
+                        </p>
+                     </div>
+                     <div class="element">
+                        <p class="topic-title"> 
+                           8. Semester in which the student was studying at the time of leaving:
+                        <p class="topic-title second-element"> 
+                           <span class="strong" id="res-semester">--semester--</span>
+                        </p>
+                     </div>
+                     <div class="element">
+                        <p class="topic-title"> 
+                           9. Date of admission of the course:
+                        </p>
+                        <p class="topic-title second-element"> 
+                           <span class="strong" id="res-dateOfAdmission">--dateOfAdmission--</span>
+                        </p>
+                     </div>
+                     <div class="element">
+                        <p class="topic-title"> 
+                           10. Medium of study:
+                        </p>
+                        <p class="topic-title second-element"> 
+                          <span class="strong" id="res-mediumOfStudy">--mediumOfStudy--</span>
+                        </p>
+                     </div>
+                     <div class="element">
+                        <p class="topic-title">
+                           11. Whether qualified for promotion of higher study:
+                        </p>
+                        <p class="topic-title second-element">
+                           <span class="strong" id="res-qualifiedForHigherStudy">--qualifiedForHigherStudy--</span>
+                        </p>
+                     </div>
+                  <div class="element">
+                     <p class="topic-title"> 
+                        12. Date on which the student actually left the college: 
+                     </p>
+                     <p class="topic-title second-element"> 
+                        <span class="strong" id="res-dateOnWhichStudentLeftTheCollege">--dateStudentLeftTheCollege--</span>
+                     </p>
+                  </div>
+                  <div class="element">
+                     <p class="topic-title"> 
+                        13. Date of application for Transfer Certificate:
+                     </p>
+                     <p class="topic-title second-element"> 
+                        <span class="strong" id="res-dateOfApplicationForTc">--dateOfApplicationForTc--</span>
+                     </p>
+                  </div>
+                  <div class="element">
+                     <p class="topic-title"> 
+                        14. Reason for leaving:
+                     </p>
+                     <p class="topic-title second-element"> 
+                       <span class="strong" id="res-reasonForLeaving">--reasonForLeaving--</span>
+                     </p>
+                  </div>
+                  <div class="element">
+                     <p class="topic-title"> 
+                        15. Conduct and character: 
+                     </p>
+                     <p class="topic-title second-element"> 
+                        <span class="strong" id="res-conductAndCharacter">--conductAndCharacter--</span>
+                     </p>
+                  </div>
+                  <div class="footer tc-footer">
+                     <div class="first">
+                        <p>Place: <span id="res-place">--place--</span></p>
+                        <p>Date: <span id="res-date">--date--</span></p>
+                     </div>
+                     <p>College Seal</p>
+                     <p>Principal</p>
+                  </div>
+
+                  <div class="footer-note">
+                     *certificate without the college hologram is null and void.
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      </div>
+      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+      <script src="js/html2pdf.js"></script>
+      <script>
+         function addOptions(select, options) {
+             for (let i = 0; i < options.length; i++) {
+                 let option = document.createElement('option');
+                 option.text = options[i];
+                 option.value = options[i];
+                 select.add(option);
+             }
+         }
+         
+         function updateBranchOptions() {
+             const degree = document.getElementById('degree').value;
+             document.getElementById("res-degree").innerText = degree;
+             const branchSelect = document.getElementById('branch');
+             while (branchSelect.options.length > 0) {
+                 branchSelect.options.remove(0);
+             }
+             if (degree === 'B.E') {
+                 addOptions(branchSelect, ['Select','Computer Science and Engineering', 'Biomedical Engineering','Electronics and Communication Engineering', 'Mechanical Engineering']);
+             } else if (degree === 'B.Tech') {
+                 addOptions(branchSelect, ['Select','Artificial Intelligence and Data Science', 'Agriculture Engineering', 'Information Technology']);
+             } else if (degree === 'M.E') {
+                 addOptions(branchSelect, ['Select','Computer Science and Engineering']);
+             } 
+         }
+         
+         function updatePreview(elementId) {
+         
+             if (elementId == 'male') {
+                 document.getElementById("res-gender").innerText = "Male";
+             }
+             else if (elementId == 'female') {
+                 document.getElementById("res-gender").innerText = "Female";
+             }
+             else{
+                 const value = document.getElementById(elementId).value;
+                 document.getElementById("res-"+elementId).innerText = value;
+             }
+             
+         }
+
+         const imageInput = document.getElementById('image');
+         imageInput.addEventListener('change', handleImageUpload);
+
+         function handleImageUpload(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function () {
+               const base64Image = reader.result;
+               // Save the base64Image variable or use it as needed
+               document.getElementById("res-image").src = base64Image;
+               console.log('Base64 Image:', base64Image);
+            };
+            reader.readAsDataURL(file);
+         }
+         
+         function generatePDF() {
+             const element = document.getElementById('certificate-final');
+             const registerNumber = document.getElementById('registerNumber').value;
+             const fullName = document.getElementById('fullName').value;
+         
+             const width = element.offsetWidth*(72/96);
+             const height = element.offsetHeight*(72/96)+3;
+         
+             const opt = {
+                 margin: 0.1,
+                 filename: `TC_${registerNumber}_${fullName}.pdf`,
+                 image: { type: 'jpeg', quality: 1000 },
+                 html2canvas: { scale: 10 },
+                 jsPDF: { unit: 'pt', format: [width, height], orientation: 'p' }
+             };
+             html2pdf().set(opt).from(element).save();
+         }
+         
+         
+      </script>
+   </body>
+</html>

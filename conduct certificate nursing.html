@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Conduct/Course Certificate</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css.map">
+    <link rel="icon" type="image/x-icon" href="/assets/shanmugha-logo.png">
+
+
+</head>
+<body>
+    <div id="left">
+        <div class="form-left">
+            <div class="container px-5 my-4">
+                <div class="form-floating mb-4">
+                    <input class="form-control" id="fullname" onkeyup="updatePreview('fullname')" type="text" placeholder="Full Name" data-sb-validations="required" onkeyup="updatePreview('fullname')"/>
+                    <label for="fullname">Full Name</label>
+                    <div class="invalid-feedback" data-sb-feedback="fullName:required">Full Name is required.</div>
+                </div>
+                <div class="form-floating mb-4">
+                    <input class="form-control" id="registrationNumber" onkeyup="updatePreview('registrationNumber')" onkeyup="updatePreview('registrationNumber')" type="text" placeholder="Registration Number" data-sb-validations="required" />
+                    <label for="registrationNumber">Registration Number</label>
+                    <div class="invalid-feedback" data-sb-feedback="registrationNumber:required">Registration Number is required.</div>
+                </div>
+                <div class="form-floating mb-4">
+                    <input class="form-control" id="parentName" onkeyup="updatePreview('parentName')"  type="text" placeholder="Parent Name" data-sb-validations="required" />
+                    <label for="parentName">Parent/Guardian Name</label>
+                    <div class="invalid-feedback" data-sb-feedback="parentName:required">Parent Name is required.</div>
+                </div>
+                <div class="form-floating mb-4">
+                    <input class="form-control" id="serialNumber" onkeyup="updatePreview('serialNumber')" type="text" placeholder="Serial Number" data-sb-validations="required" />
+                    <label for="serialNumber">Serial Number</label>
+                    <div class="invalid-feedback" data-sb-feedback="parentName:required">Serial Number is required.</div>
+                </div>
+                <div class="form-floating mb-4">
+                    <input class="form-control" id="studentID" onkeyup="updatePreview('studentID')" type="text" placeholder="Student ID" data-sb-validations="required" />
+                    <label for="studentID">Student ID</label>
+                    <div class="invalid-feedback" data-sb-feedback="parentName:required">Student ID is required.</div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="image" type="file" accept="image/*" placeholder="Nationality" data-sb-validations="required" />
+                    <label for="nationality">Upload Image</label>
+                    <div class="invalid-feedback" data-sb-feedback="nationality:required">Image is required.</div>
+                </div>
+                <!-- <div class="mb-4">
+                    <label class="form-label d-block">Marital Status</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="single" onclick="updatePreview('single')" type="radio" name="maritalStatus" data-sb-validations="required" />
+                        <label class="form-check-label" for="single">Single</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="married" onclick="updatePreview('married')" type="radio" name="maritalStatus" data-sb-validations="required" />
+                        <label class="form-check-label" for="married">Married</label>
+                    </div>
+                    <div class="invalid-feedback" data-sb-feedback="maritalStatus:required">One option is required.</div>
+                </div> -->
+                <label class="form-label d-block">Duration</label>
+                <div class="form-floating mb-2">
+                    <input class="form-control" id="startYear" onkeyup="updatePreview('startYear')" type="text" placeholder="Start Year" data-sb-validations="required" />
+                    <label for="startYear">Start Date</label>
+                    <div class="invalid-feedback" data-sb-feedback="startYear:required">Start Year is required.</div>
+                </div>
+                <!-- <div class="form-floating mb-4">
+                    <input class="form-control" id="endYear" onkeyup="updatePreview('endYear')" type="text" placeholder="End Year" data-sb-validations="required" />
+                    <label for="endYear">End Date</label>
+                    <div class="invalid-feedback" data-sb-feedback="endYear:required">Year is required.</div>
+                </div> -->
+                <!-- <div class="form-floating mb-4">
+                    <input class="form-control" id="examinationDate" onchange="updatePreview('examinationDate')" type="date" placeholder="Examination Date" data-sb-validations="" />
+                    <label for="examinationDate">Examination Date</label>
+                </div> -->
+                <!-- <div class="form-floating mb-4">
+                    <input class="form-control" id="place" onkeyup="updatePreview('place')" type="text" placeholder="Place" data-sb-validations="" />
+                    <label for="place">Place</label>
+                </div> -->
+                <!-- <div class="form-floating mb-4">
+                    <input class="form-control" id="date" onchange="updatePreview('date')" type="date" placeholder="Date" data-sb-validations="" />
+                    <label for="date">Date</label>
+                </div> -->
+            </div>
+            <div class="download-btn">
+                <button onclick="generatePDF()">Create Certificate</button>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div id="right">
+        <div class="certificate-container" id="certificate-final">
+            <div class="certificate conduct-certificate nursing-cc">
+                <div class="water-mark-overlay-nursing"></div>
+                <div class="certificate-header">
+                    <img src="assets/nursing-full-logo.png" class="logo" alt="">
+                    <p class="certificate-title nursing-title"><strong>COURSE COMPLETION CERTIFICATE</strong></p>
+                    <img src="assets/nursing-underline.png" class="" alt="">
+
+                </div>
+                <div class="certificate-body">
+                    <div class="certificate-content nursing-content">
+                        <p>S.No: <span id="res-serialNumber">--serialNumber--</span></p>
+
+                        <p class="about-certificate nursing-about">
+                            This is to certify that <span class="strong purple underline" id="prefix">Ms.</span><span class="strong purple underline" id="res-fullname">--name--</span> (<span class="strong" id="res-studentID">--SIN--</span>), Daughter of <span class="strong" id="res-parentName">--fatherName--</span> bonafide student of B.Sc., Nursing degree program in our Institution. She has passed the Final year examination held on <span class="strong" id="res-examinationDate">October 2023</span> with Register No.<span class="strong" id="res-registrationNumber">--reg--</span> under the Tamilnadu Dr.M.G.R Medical University, Chennai. The course duration is from <span class="strong" id="res-startYear">--startYear--</span> to <span class="strong" id="res-endYear">10/11/2023</span>. During this period, <span class="purple">her character and conduct were Good.</span>
+                        </p>
+    
+                        <div class="footer footer-nursing">
+                            <!-- <img id="res-image" src="assets/X1pK30u.png" class="profilepic-nursing-cc" alt=""> -->
+                            <div id="res-image" class="profilepic-nursing-cc" alt=""></div>
+
+                            <p>Principal</p>
+                            <p>Date: <span id="res-date">04-12-2023</span></p>
+                            <p>Place: <span id="res-place">Sankari</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+ 
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+    <script src="js/html2pdf.js"></script>
+    <script>
+
+        function updatePreview(elementId) {
+
+            if (elementId == 'single') {
+                document.getElementById("prefix").innerText = "Ms.";
+            }
+            else if (elementId == 'married') {
+                document.getElementById("prefix").innerText = "Mrs.";
+            }
+            else{
+                const value = document.getElementById(elementId).value;
+                document.getElementById("res-"+elementId).innerText = value;
+            }
+            
+        }
+
+        const imageInput = document.getElementById('image');
+         imageInput.addEventListener('change', handleImageUpload);
+
+         function handleImageUpload(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function () {
+               const base64Image = reader.result;
+               // Save the base64Image variable or use it as needed
+               document.getElementById("res-image").style.backgroundImage = `url(${base64Image})`;
+               console.log('Base64 Image:', base64Image);
+            };
+            reader.readAsDataURL(file);
+         }
+
+        function generatePDF() {
+            const element = document.getElementById('certificate-final');
+            const registrationNumber = document.getElementById('registrationNumber').value;
+            const name = document.getElementById('fullname').value;
+
+            const width = element.offsetWidth*(72/96);
+            const height = element.offsetHeight*(72/96)+3;
+
+            const opt = {
+                margin: 1,
+                filename: `CC_${registrationNumber}_${name}.pdf`,
+                image: { type: 'jpeg', quality: 1000 },
+                html2canvas: { scale: 10 },
+                jsPDF: { unit: 'pt', format: [width, height], orientation: 'l' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Conduct/Course Certificate</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css.map">
+    <link rel="icon" type="image/x-icon" href="/assets/shanmugha-logo.png">
+
+
+</head>
+<body>
+    <div id="left">
+        <div class="form-left">
+            <div class="container px-5 my-4">
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="fullname" onkeyup="updatePreview('fullname')" type="text" placeholder="Full Name" data-sb-validations="required" onkeyup="updatePreview('fullname')"/>
+                    <label for="fullName">Full Name</label>
+                    <div class="invalid-feedback" data-sb-feedback="fullName:required">Full Name is required.</div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="registrationNumber" onkeyup="updatePreview('registrationNumber')" onkeyup="updatePreview('registrationNumber')" type="text" placeholder="Registration Number" data-sb-validations="required" />
+                    <label for="registrationNumber">Registration Number</label>
+                    <div class="invalid-feedback" data-sb-feedback="registrationNumber:required">Registration Number is required.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label d-block">Gender</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="male" onclick="updatePreview('male')" type="radio" name="gender" data-sb-validations="required" />
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="female" onclick="updatePreview('female')" type="radio" name="gender" data-sb-validations="required" />
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                    <div class="invalid-feedback" data-sb-feedback="gender:required">One option is required.</div>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="degree" onchange="updateBranchOptions()" aria-label="Degree">
+                        <option value="Select">Select</option>
+                        <option value="B.E">B.E</option>
+                        <option value="B.Tech">B.Tech</option>
+                        <option value="M.E">M.E</option>
+                    </select>
+                    <label for="degree">Degree</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="branch" onchange="updatePreview('branch')" aria-label="Branch">
+                        <option value="1"></option>
+                    </select>
+                    <label for="branch">Branch</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="duration" onchange="updatePreview('duration')" aria-label="Duration">
+                        <option value="Select">Select</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                        <option value="Distant">Distant</option>
+                    </select>
+                    <label for="duration">Duration</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="year" onkeyup="updatePreview('year')" type="text" placeholder="Year" data-sb-validations="required" />
+                    <label for="year">Year</label>
+                    <div class="invalid-feedback" data-sb-feedback="year:required">Year is required.</div>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="note" onkeyup="updatePreview('note')" type="text" placeholder="Note" style="height: 10rem;" data-sb-validations=""></textarea>
+                    <label for="note">Note</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="place" onkeyup="updatePreview('place')" type="text" placeholder="Place" data-sb-validations="" />
+                    <label for="place">Place</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="date" onchange="updatePreview('date')" type="date" placeholder="Date" data-sb-validations="" />
+                    <label for="date">Date</label>
+                </div>
+            </div>
+            <div class="download-btn">
+                <button onclick="generatePDF()">Create Certificate</button>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div id="right">
+        <div class="certificate-container" id="certificate-final">
+            <div class="certificate conduct-certificate">
+                <div class="water-mark-overlay"></div>
+                <div class="certificate-header">
+                    <img src="assets/shanmugha-full-logo.png" class="logo" alt="">
+                    <p class="certificate-title"><strong>CONDUCT / COURSE COMPLETION CERTIFICATE</strong></p>
+                </div>
+                <div class="certificate-body">
+                    <div class="certificate-content">
+                        <p class="topic-title"> 
+                            Reg: <span class="strong" id="res-registrationNumber">--reg--</span>
+                        </p>
+    
+                        <p class="about-certificate">
+                            This is to certify that <span class="strong" id="designation">--designation--</span>. <span class="strong" id="res-fullname">--name--</span> is a student of our Institution who has pursued <span class="strong" id="res-degree">--degree--</span> <span class="strong" id="res-branch">--branch--</span>. <span id="he/she">--he/she--</span> has successfully completed the course prescribed by <span class="strong">Anna University, Chennai,</span> in <span id="res-duration">--duration--</span> in the academic year <span id="res-year">--year--</span>. During the above period <span id="his/her">--his/her--</span> conduct and character was good. 
+                        </p>
+    
+                        <p class="topic-title">
+                            Note: <span id="res-note"></span>
+                        </p>
+
+                        <svg viewBox="0 0 100 100" width="100" height="100">
+                            <defs>
+                              <path id="circle"
+                                d="
+                                  M 50, 50
+                                  m -37, 0
+                                  a 37,37 0 1,1 74,0
+                                  a 37,37 0 1,1 -74,0"/>
+                            </defs>
+                            <text font-size="9px">
+                              <textPath xlink:href="#circle">
+                                Certificate without the college hologram is null and void
+                              </textPath>
+                            </text>
+                          </svg>
+    
+                        <p class="about-certificate">
+                            Verify the Grade Sheets/Degree Certificate for final was good.
+                        </p>
+    
+                        <div class="footer">
+                            <div class="first">
+                                <p>Place: <span id="res-place">--place--</span></p>
+                                <p>Date: <span id="res-date">--date--</span></p>
+                            </div>
+                            
+                            <p>College Seal</p>
+    
+                            <p>Principal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+ 
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+    <script src="js/html2pdf.js"></script>
+    <script>
+        function addOptions(select, options) {
+            for (let i = 0; i < options.length; i++) {
+                let option = document.createElement('option');
+                option.text = options[i];
+                option.value = options[i];
+                select.add(option);
+            }
+        }
+
+        function updateBranchOptions() {
+            const degree = document.getElementById('degree').value;
+            document.getElementById("res-degree").innerText = degree;
+            const branchSelect = document.getElementById('branch');
+            while (branchSelect.options.length > 0) {
+                branchSelect.options.remove(0);
+            }
+            if (degree === 'B.E') {
+                addOptions(branchSelect, ['Select','Computer Science and Engineering', 'Biomedical Engineering','Electronics and Communication Engineering', 'Mechanical Engineering']);
+            } else if (degree === 'B.Tech') {
+                addOptions(branchSelect, ['Select','Artificial Intelligence and Data Science', 'Agriculture Engineering', 'Information Technology']);
+            } else if (degree === 'M.E') {
+                addOptions(branchSelect, ['Select','Computer Science and Engineering']);
+            } 
+        }
+
+        function updatePreview(elementId) {
+
+            if (elementId == 'male') {
+                document.getElementById("his/her").innerText = "his";
+                document.getElementById("designation").innerText = "Mr";
+                document.getElementById("he/she").innerText = "He";
+            }
+            else if (elementId == 'female') {
+                document.getElementById("his/her").innerText = "her";
+                document.getElementById("designation").innerText = "Ms";
+                document.getElementById("he/she").innerText = "She";
+            }
+            else{
+                const value = document.getElementById(elementId).value;
+                document.getElementById("res-"+elementId).innerText = value;
+            }
+            
+        }
+
+        function generatePDF() {
+            const element = document.getElementById('certificate-final');
+            const registrationNumber = document.getElementById('registrationNumber').value;
+            const name = document.getElementById('fullname').value;
+
+            const width = element.offsetWidth*(72/96);
+            const height = element.offsetHeight*(72/96)+3;
+
+            const opt = {
+                margin: 1,
+                filename: `CC_${registrationNumber}_${name}.pdf`,
+                image: { type: 'jpeg', quality: 1000 },
+                html2canvas: { scale: 10 },
+                jsPDF: { unit: 'pt', format: [width, height], orientation: 'l' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+
+    </script>
+</body>
+</html>
